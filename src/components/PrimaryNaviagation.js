@@ -3,7 +3,7 @@ import "./PrimaryNavigation.scss";
 export default function PrimaryNavigation() {
     return (
         <nav className="primaryNavigation">
-            <a href="" className="primaryNavigation__brand">SaaS Company</a>
+            <a href="/home" className="primaryNavigation__brand">SaaS Company</a>
             <ul className="primaryNavigation__menu">
                 <li className="primaryNavigation__menuItem">
                     <a className="primaryNavigation__menuLink" href="/home">Home</a>
