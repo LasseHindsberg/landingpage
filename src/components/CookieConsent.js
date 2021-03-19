@@ -1,6 +1,24 @@
+import { useEffect } from 'react';
+import setCookies from '../helpers/setCookies';
 import './CookieConsent.scss';
 
 export default function CookieConsent() {
+    useEffect(function() {
+        document.body.className = "modal--open";
+    }, [])
+
+    function allowAll() {
+        var now = Date.now();
+        var expires = new Date(now + 60000).toUTCString();
+        var payload = {
+            acceptnecessary:true,
+            acceptanalytics:true
+        };
+        setCookies(payload);
+        document.cookie = `landingpagedemo=${JSON.stringify(payload)}; expires=${expires}; path=/`
+        document.body.className = "";
+        document.querySelector(".overlay").style.display = "none";
+    }
 return(
 <div className="overlay">
     <section className="cookieConsentModal">
@@ -10,6 +28,7 @@ return(
 
         <article className="cookieConsentModal__content">
             <table>
+                <tbody>
                 <tr>
                     <td>
                         <input type="checkbox" name="" id="cookie__necessary" disabled checked/>
@@ -48,11 +67,12 @@ return(
                         </p>
                     </td>
                 </tr>
+                </tbody>
             </table>
 
             <div className="content__buttons">
                 <button className="buttons__button">Tillad valgte</button>
-                <button className="buttons__button buttons__button--highlight">Tillad alle</button>
+                <button className="buttons__button buttons__button--highlight" onClick={() => allowAll()}>Tillad alle</button>
             </div>
         </article>
     </section>
